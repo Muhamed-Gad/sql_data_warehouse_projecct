@@ -123,19 +123,19 @@ These tables form a Star Schema optimized for reporting and Business Intelligenc
 ---
 ## Data Architecture
 
-![Data Architecture](docs/Data_Architecture.png)
+![Data Architecture](docs/Data%20Architecture.png)
 
 ## Data Flow Diagram
 
-![Data Flow](docs/Data_Flow_Diagram.png)
+![Data Flow](docs/Data%20Flow%20Diagram.png)
 
 ## Data Integration
 
-![Data Integration](docs/Data_Integration.png)
+![Data Integration](docs/Data%20Integration.png)
 
 ## Star Schema
 
-![Star Schema](docs/Star_Schema.png)
+![Star Schema](docs/Star%20Schema.png)
 
 
 
