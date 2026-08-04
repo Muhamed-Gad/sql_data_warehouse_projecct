@@ -123,19 +123,19 @@ These tables form a Star Schema optimized for reporting and Business Intelligenc
 ---
 ## Data Architecture
 
-![Data Architecture](docs/data_architecture.png (https://github.com/Muhamed-Gad/sql_data_warehouse_projecct/blob/main/docs/Data%20Architecture.png))
+![Data Architecture](docs/Data_Architecture.png)
 
 ## Data Flow Diagram
 
-![Data Flow](docs/data_flow_diagram.png)
+![Data Flow](docs/Data_Flow_Diagram.png)
 
 ## Data Integration
 
-![Data Integration](docs/data_integration.png)
+![Data Integration](docs/Data_Integration.png)
 
 ## Star Schema
 
-![Star Schema](docs/star_schema.png)
+![Star Schema](docs/Star_Schema.png)
 
 
 
