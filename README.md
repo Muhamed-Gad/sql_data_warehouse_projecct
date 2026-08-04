@@ -123,7 +123,7 @@ These tables form a Star Schema optimized for reporting and Business Intelligenc
 ---
 ## Data Architecture
 
-![Data Architecture]([docs/data_architecture.png](https://github.com/Muhamed-Gad/sql_data_warehouse_projecct/blob/main/docs/Data%20Architecture.png))
+![Data Architecture](docs/data_architecture.png (https://github.com/Muhamed-Gad/sql_data_warehouse_projecct/blob/main/docs/Data%20Architecture.png))
 
 ## Data Flow Diagram
 
