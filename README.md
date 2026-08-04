@@ -1,272 +1,239 @@
 # 🏗️ SQL Data Warehouse Project
 
-A complete **SQL Data Warehouse** project that demonstrates how to design and build a modern Data Warehouse from scratch using SQL Server.
+> An end-to-end SQL Data Warehouse built with SQL Server. This project transforms raw CRM and ERP data into a clean, analytics-ready model through a layered ETL pipeline, data-quality checks, and a star-schema design.
 
-The project follows the Medallion Architecture (Bronze, Silver, and Gold layers) and implements a complete ETL pipeline, starting from raw CRM & ERP data to business-ready analytical models.
-
----
-
-## 📌 Project Overview
-
-This project covers the entire Data Warehouse development lifecycle, including:
-
-- Designing the Data Warehouse Architecture
-- Building ETL Pipelines
-- Data Modeling
-- Data Cleansing & Transformation
-- Data Integration
-- Data Quality Testing
-- Creating a Business-ready Star Schema
-
-The final output is a scalable SQL Data Warehouse optimized for reporting and analytics.
+[![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white)](https://www.microsoft.com/sql-server)
+[![T-SQL](https://img.shields.io/badge/T--SQL-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)](https://learn.microsoft.com/sql/t-sql/)
+[![Architecture](https://img.shields.io/badge/Architecture-Medallion-5B5FC7?style=for-the-badge)](#-data-architecture)
+[![ETL](https://img.shields.io/badge/ETL-Batch_Processing-0E7490?style=for-the-badge)](#-etl-pipeline)
+[![License](https://img.shields.io/badge/License-MIT-16A34A?style=for-the-badge)](LICENSE)
 
 ---
 
-# 🎯 Project Objectives
+## 📸 Project Preview
 
-- Build a SQL Data Warehouse from scratch.
-- Integrate data from multiple business systems.
-- Design a clean ETL pipeline.
-- Apply Data Cleansing and Standardization techniques.
-- Implement Medallion Architecture.
-- Build analytical tables using Star Schema.
-- Perform Data Quality Testing.
+![Data Warehouse Architecture](docs/Data%20Architecture.png)
 
 ---
 
-# 🛠️ Tech Stack
+## 📑 Table of Contents
 
-| Technology | Purpose |
-|------------|---------|
-| SQL Server | Database Engine |
-| T-SQL | ETL & Data Transformation |
-| Draw.io | Architecture & Data Modeling |
-| Git | Version Control |
-| GitHub | Project Hosting |
-
----
-
-# 📂 Data Sources
-
-The project integrates data from two different business systems.
-
-## CRM Source
-
-- Customer Information
-- Product Information
-- Sales Details
-
-## ERP Source
-
-- Customer Data
-- Location Data
-- Product Category
-- Additional ERP Dimensions
+- [Project Overview](#-project-overview)
+- [Data Architecture](#-data-architecture)
+- [Data Flow](#-data-flow)
+- [Data Integration](#-data-integration)
+- [Tech Stack](#-tech-stack)
+- [ETL Pipeline](#-etl-pipeline)
+- [Data Model](#-data-model)
+- [Repository Structure](#-repository-structure)
+- [How to Run](#-how-to-run)
+- [Data Quality Testing](#-data-quality-testing)
+- [Future Improvements](#-future-improvements)
+- [Credits](#-credits)
+- [Author](#-author)
 
 ---
 
-# 🏛️ Data Warehouse Architecture
+## 🎯 Project Overview
 
-The project follows the Medallion Architecture.
+This project demonstrates how to build a modern SQL Data Warehouse from scratch. It ingests source data from CRM and ERP systems, standardizes and enriches it through ETL processes, and delivers an analytical data model designed for reporting and business insights.
 
-## Bronze Layer
+| Item | Description |
+|---|---|
+| **Project Type** | SQL Data Warehouse |
+| **Database** | Microsoft SQL Server |
+| **Architecture** | Medallion Architecture: Bronze, Silver, and Gold |
+| **Source Systems** | CRM and ERP CSV extracts |
+| **Processing** | Batch ETL with T-SQL stored procedures |
+| **Data Modeling** | Star Schema |
+| **Data Quality** | Validation and testing scripts |
 
-Purpose:
+### Business Objectives
 
-- Raw Data Ingestion
-- Full Load Process
-- Batch Processing
-- Truncate & Insert Strategy
-
----
-
-## Silver Layer
-
-Purpose:
-
-- Data Cleansing
-- Data Standardization
-- Data Normalization
-- Derived Columns
-- Data Enrichment
+- Consolidate data from multiple operational source systems.
+- Build a reliable, repeatable ETL process.
+- Create a single source of truth for analytical reporting.
+- Model customer, product, and sales data for fast and intuitive analysis.
+- Apply data-quality checks before publishing reporting-ready data.
 
 ---
 
-## Gold Layer
+## 🏛️ Data Architecture
 
-Purpose:
-
-- Business Logic
-- Data Integration
-- Data Aggregation
-- Flat Tables
-- Star Schema
-- Analytics-ready Data
-
----
-
-# ⭐ Data Model
-
-The Gold Layer contains:
-
-### Dimension Tables
-
-- gold.dim_customers
-- gold.dim_products
-
-### Fact Tables
-
-- gold.fact_sales
-
-These tables form a Star Schema optimized for reporting and Business Intelligence.
-
----
-## Data Architecture
+The solution follows a **Medallion Architecture**. Each layer has a clear responsibility, allowing raw source data to be preserved while progressively improving data quality and business usability.
 
 ![Data Architecture](docs/Data%20Architecture.png)
 
-## Data Flow Diagram
+| Layer | Purpose |
+|---|---|
+| **Bronze** | Stores raw data exactly as received from source systems. |
+| **Silver** | Cleans, standardizes, deduplicates, and integrates the raw data. |
+| **Gold** | Provides business-ready fact and dimension tables for analytics. |
 
-![Data Flow](docs/Data%20Flow%20Diagram.png)
+---
 
-## Data Integration
+## 🔄 Data Flow
+
+The pipeline extracts source files, loads them into the Bronze layer, applies transformations in Silver, and finally produces curated analytical tables in Gold.
+
+![Data Flow Diagram](docs/Data%20Flow%20Diagram.png)
+
+---
+
+## 🔗 Data Integration
+
+CRM data contributes customer and sales information, while ERP data supplies product and reference information. The integration process aligns shared business entities into one consistent analytical model.
 
 ![Data Integration](docs/Data%20Integration.png)
 
-## Star Schema
+---
+
+## 🧰 Tech Stack
+
+| Tool / Technology | Purpose |
+|---|---|
+| **SQL Server** | Data warehouse platform and database engine. |
+| **T-SQL** | Data ingestion, transformations, and validation logic. |
+| **CSV Files** | Source extracts from CRM and ERP systems. |
+| **Draw.io** | Architecture and data-model documentation. |
+| **Git & GitHub** | Version control and project collaboration. |
+
+---
+
+## ⚙️ ETL Pipeline
+
+### 1. Bronze Layer — Raw Ingestion
+
+- Creates source-aligned tables.
+- Loads raw CRM and ERP extracts without business transformations.
+- Preserves the original data for traceability and reprocessing.
+
+### 2. Silver Layer — Cleansing & Standardization
+
+- Removes duplicates and handles missing values.
+- Standardizes dates, text fields, codes, and naming conventions.
+- Applies data-type corrections and business-rule transformations.
+- Integrates related CRM and ERP entities.
+
+### 3. Gold Layer — Analytics Delivery
+
+- Builds reporting-ready dimensions and facts.
+- Implements the star schema.
+- Publishes clean, trusted datasets for BI tools and analysis.
+
+---
+
+## ⭐ Data Model
+
+The Gold layer uses a **star schema** to make reporting simple and performant. The central fact table captures sales activity and connects to descriptive dimensions such as customers, products, and dates.
 
 ![Star Schema](docs/Star%20Schema.png)
 
-
-
-# 🔄 ETL Workflow
-
-CRM + ERP Sources
-
-⬇
-
-Bronze Layer
-
-⬇
-
-Silver Layer
-
-⬇
-
-Gold Layer
-
-⬇
-
-Business Analytics
+| Table Type | Examples | Purpose |
+|---|---|---|
+| **Fact Tables** | `fact_sales` | Stores measurable business events, such as sales amount and quantity. |
+| **Dimension Tables** | `dim_customers`, `dim_products`, `dim_dates` | Adds business context for filtering, grouping, and reporting. |
 
 ---
 
-# 📊 Project Documentation
+## 📁 Repository Structure
 
-The project includes complete documentation inside the **docs** folder.
-
-## Included Diagrams
-
-- Data Architecture
-- Data Flow Diagram
-- Data Integration Diagram
-- Star Schema
-
-> Each diagram explains a different stage of the Data Warehouse design process.
-
----
-
-# 📁 Repository Structure
-
-```
-SQL-Data-Warehouse-Project/
-
+```text
+sql-data-warehouse-project/
 │
-├── datasets/
+├── datasets/                 # Source CRM and ERP files
 │   ├── source_crm/
 │   └── source_erp/
 │
-├── docs/
-│   ├── Data Architecture
-│   ├── Data Flow Diagram
-│   ├── Data Integration
-│   └── Star Schema
+├── docs/                     # Architecture and data-model diagrams
+│   ├── data_architecture.png
+│   ├── data_flow_diagram.png
+│   ├── data_integration.png
+│   └── star_schema.png
 │
 ├── scripts/
-│   ├── bronze/
-│   │   ├── ddl.sql
-│   │   └── proc_load_bronze.sql
-│   │
-│   ├── silver/
-│   │   ├── ddl.sql
-│   │   └── proc_load_silver.sql
-│   │
-│   └── gold/
-│       ├── ddl.sql
-│       └── proc_load_gold.sql
+│   ├── bronze/               # Raw ingestion scripts
+│   ├── silver/               # Cleansing and transformation scripts
+│   ├── gold/                 # Star-schema and reporting-layer scripts
+│   └── tests/                # Data-quality validation scripts
 │
-├── tests/
-│   ├── silver/
-│   └── gold/
-│
+├── LICENSE
 └── README.md
 ```
 
 ---
 
-# ✅ Data Quality Testing
+## 🚀 How to Run
 
-Data validation scripts are included for:
+### Prerequisites
 
-- Silver Layer
-- Gold Layer
+- SQL Server (Developer, Express, or compatible edition)
+- SQL Server Management Studio (SSMS), Azure Data Studio, or another SQL client
+- Access to the source CSV files in the `datasets/` directory
 
-The tests verify:
+### Setup
 
-- Data Consistency
-- Duplicate Records
-- Missing Values
-- Data Integrity
-- Business Rules Validation
+1. Clone this repository.
 
----
+   ```bash
+   git clone https://github.com/Muhamed-Gad/sql_data_warehouse_projecct.git
+   ```
 
-# 🚀 How to Run
+2. Open the project in your SQL client and create the database.
 
-1. Clone the repository.
-2. Open SQL Server Management Studio.
-3. Execute the Bronze Layer scripts.
-4. Execute the Silver Layer scripts.
-5. Execute the Gold Layer scripts.
-6. Run the validation scripts.
-7. Explore the Gold Layer tables.
+3. Run the scripts in this order:
 
----
+   ```text
+   1. scripts/bronze/
+   2. scripts/silver/
+   3. scripts/gold/
+   4. scripts/tests/
+   ```
 
-# 📈 Project Highlights
+4. Update source file paths in the ingestion scripts if your local folder differs.
 
-✔ End-to-End Data Warehouse
-✔ ETL Pipeline
-✔ Medallion Architecture
-✔ Star Schema
-✔ SQL Server
-✔ Data Integration
-✔ Data Quality Testing
-✔ Production-style Folder Structure
+5. Query the Gold-layer tables to begin analysis.
 
 ---
 
-# 📚 Credits
+## ✅ Data Quality Testing
 
-This project was developed as part of the **SQL Data Warehouse** learning journey inspired by the excellent educational content created by **Data With Baraa**.
-Special thanks to **Baraa** for providing the project idea, datasets, and detailed guidance throughout the course.
-The implementation, repository organization, documentation, and GitHub publication were completed as part of my personal learning portfolio.
+Validation scripts help ensure the data published to the Gold layer is reliable. Typical checks include:
+
+- Null or missing values in required fields.
+- Duplicate business keys.
+- Invalid dates, quantities, and monetary amounts.
+- Orphaned foreign keys between facts and dimensions.
+- Reconciliation of record counts across pipeline layers.
+- Consistency of standardized values and business rules.
+
+Run the scripts in `scripts/tests/` after each pipeline load and investigate any exceptions before using the data for reporting.
 
 ---
 
-# 👨‍💻 Author
-**Mohamed Gad**
-Mechatronics Engineering Student
-Aspiring Data Engineer | Data Analyst | AI Engineer
+## 🔮 Future Improvements
+
+- [ ] Add incremental loading using watermarks or change tracking.
+- [ ] Schedule and orchestrate pipelines with SQL Server Agent, SSIS, or Azure Data Factory.
+- [ ] Add automated unit and reconciliation tests.
+- [ ] Publish a Power BI dashboard on top of the Gold layer.
+- [ ] Add monitoring, logging, and alerting for failed loads.
+- [ ] Containerize the local environment for easier setup.
+- [ ] Extend the model with additional source systems and historical tracking.
 
 ---
+
+## 🙏 Credits
+
+This project was inspired by the SQL Data Warehouse learning content created by [Data With Baraa](https://www.youtube.com/@DataWithBaraa). Thank you for sharing practical, high-quality data-engineering education with the community.
+
+---
+
+## 👤 Author
+
+**Muhamed**
+
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Muhamed-gad)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/muhamed-gad/)
+
+> If you found this project useful, consider giving it a ⭐ on GitHub.
